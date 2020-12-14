@@ -12,7 +12,7 @@ WEB_ALLOWED_ORIGINS=http://localhost:8888,http://localhost:4200
 
 # If you're running an instance of the application on a domain different than
 # crates.io, uncomment this line and set the variable to your domain name.
-#DOMAIN_NAME=staging.crates.io
+DOMAIN_NAME=${site_fqdn}
 
 # Key to sign and encrypt cookies with. Must be at least 32 bytes. Change this
 # to a long, random string for production.

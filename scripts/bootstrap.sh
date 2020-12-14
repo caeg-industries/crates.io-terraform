@@ -5,7 +5,7 @@ set -eux
 #cp /vagrant/env.sample .
 
 sudo apt-get update
-sudo apt-get install -y curl git nodejs gcc pkg-config libssl-dev libpq-dev postgresql-cli nginx
+sudo apt-get install -y curl git nodejs gcc pkg-config libssl-dev libpq-dev postgresql-client nginx
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -35,5 +35,9 @@ test -d crates.io || git clone https://github.com/caeg-industries/crates.io
 #git checkout subcrates
 #yarn install
 #cargo build
+sudo echo "KillUserProcesses=no" | sudo tee -a /etc/systemd/logind.conf
+sudo systemctl restart systemd-logind
+sudo loginctl enable-linger ubuntu
+
 
 echo "Finished"

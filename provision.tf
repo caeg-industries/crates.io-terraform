@@ -48,9 +48,6 @@ resource "null_resource" "server_configure_a" {
 
   provisioner "remote-exec" {
     inline = [
-      "systemctl --user stop server || true",
-      "systemctl --user stop backgroundworker || true",
-      "systemctl --user stop frontend || true",
       "mkdir -p .config/systemd/user",
       "mkdir -p .config/crates",
     ]
@@ -67,9 +64,10 @@ resource "null_resource" "server_configure_b" {
   depends_on = [null_resource.server_configure_a]
 
   provisioner "file" {
-    source = "scripts/secure.sh"
+    content = templatefile("scripts/secure.sh", {
+      site_fqdn = var.site_fqdn
+    })
     destination = "secure.sh"
-
     connection {
       type = "ssh"
       user = "ubuntu"
@@ -113,6 +111,7 @@ resource "null_resource" "server_configure_b" {
 
   provisioner "file" {
     content = templatefile("templates/env", {
+      site_fqdn = var.site_fqdn
       session_key = random_string.session.result
       username = var.postgresql_username
       password = random_string.password.result
@@ -141,7 +140,7 @@ resource "null_resource" "server_configure_b" {
     content = templatefile("templates/site.conf", {
       site_fqdn = var.site_fqdn
     })
-    destination = "//etc/nginx/sites-enabled/${var.site_fqdn}.conf"
+    destination = "${var.site_fqdn}.conf"
     connection {
       type = "ssh"
       user = "ubuntu"

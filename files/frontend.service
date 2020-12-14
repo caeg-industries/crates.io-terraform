@@ -6,8 +6,9 @@ After=network.target
 EnvironmentFile=/home/ubuntu/.config/crates/env
 Type=simple
 WorkingDirectory=/home/ubuntu/crates.io
-ExecStart=/usr/bin/yarn start
+ExecStart=/usr/bin/yarn start:local
 Restart=always
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target

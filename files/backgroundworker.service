@@ -8,6 +8,7 @@ Type=simple
 WorkingDirectory=/home/ubuntu/crates.io
 ExecStart=/home/ubuntu/.cargo/bin/cargo run --bin background-worker
 Restart=always
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target

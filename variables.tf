@@ -109,10 +109,6 @@ variable "git_ssh_repo_url" {
   type        = string
 }
 
-variable "git_ssh_key" {
-  type        = string
-}
-
 variable "git_repo_url" {
   type        = string
 }
