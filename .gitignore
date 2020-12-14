@@ -1,0 +1,8 @@
+crash.log
+plan.out
+ssh_key
+.terraform
+*.tfvars
+.terraform*
+terraform.tfstate.backup
+terraform.tfstate

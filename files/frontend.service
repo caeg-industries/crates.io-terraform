@@ -1,0 +1,13 @@
+[Unit]
+Description=Crates.io Frontend Server
+After=network.target
+
+[Service]
+EnvironmentFile=/home/ubuntu/.config/crates/env
+Type=simple
+WorkingDirectory=/home/ubuntu/crates.io
+ExecStart=/usr/bin/yarn start
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

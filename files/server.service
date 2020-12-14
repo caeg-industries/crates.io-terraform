@@ -1,0 +1,13 @@
+[Unit]
+Description=Crates.io Service
+After=network.target
+
+[Service]
+EnvironmentFile=/home/ubuntu/.config/crates/env
+Type=simple
+WorkingDirectory=/home/ubuntu/crates.io
+ExecStart=/home/ubuntu/.cargo/bin/cargo run --bin server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,81 @@
+# Location of the *postgres* database. For example, if you have created a
+# blank database locally named `cargo_registry`, this would be
+# `postgres://postgres@localhost/cargo_registry`.
+DATABASE_URL=postgres://${username}:${password}@${url}/${db}
+
+# Allowed origins - any origins for which you want to allow browser
+# access to authenticated endpoints.
+WEB_ALLOWED_ORIGINS=http://localhost:8888,http://localhost:4200
+
+# If you are running a mirror of crates.io, uncomment this line.
+# MIRROR=1
+
+# If you're running an instance of the application on a domain different than
+# crates.io, uncomment this line and set the variable to your domain name.
+#DOMAIN_NAME=staging.crates.io
+
+# Key to sign and encrypt cookies with. Must be at least 32 bytes. Change this
+# to a long, random string for production.
+SESSION_KEY=${session_key}
+
+# If you will be running the tests, set this to another database that you
+# have created. For example, if your test database is named
+# `cargo_registry_test`, this would look something like
+# `postgres://postgres@localhost/cargo_registry_test`
+# If you don't plan on running the tests, you can leave this blank.
+# TEST_DATABASE_URL=
+
+# Credentials for uploading packages to S3. You can leave these commented
+# out if you're not publishing to s3 from your crates.io instance.
+S3_BUCKET=${s3_bucket}
+S3_ACCESS_KEY=${s3_bucket_ak}
+S3_SECRET_KEY=${s3_bucket_sk}
+# not needed if the S3 bucket is in US standard
+S3_REGION=${s3_bucket_region}
+
+# Upstream location of the registry index. Background jobs will push to
+# this URL. The default points to a local index for development.
+# Run `./script/init-local-index.sh` to initialize this repo.
+GIT_REPO_URL=${git_repo_url}
+
+# Credentials for updating the index. Either set the two HTTP
+# credentials and GIT_REPO_URL above, or set GIT_SSH_KEY and
+# GIT_SSH_REPO_URL.
+# GIT_HTTP_USER=
+# GIT_HTTP_PWD=
+# SSH repo URL must be fully qualified including protocol and
+# port. For example, ssh://git@github.com:22/rust-lang/crates.io-index
+# GIT_SSH_REPO_URL=
+# SSH key must be an SSH private key, base64 encoded on one line.
+# GIT_SSH_KEY=
+
+GIT_SSH_REPO_URL="${git_ssh_repo_url}"
+GIT_SSH_KEY="${git_ssh_key}"
+
+
+# Credentials for talking to github. You can leave these blank if you're
+# not logging into your crates.io instance.
+# When registering a new application on github for use with your local
+# crates.io instance, be sure to set the callback url for that application
+# to the address `http://localhost:4200/authorize/github`.
+GH_CLIENT_ID=${gh_id}
+GH_CLIENT_SECRET=${gh_secret}
+
+# Credentials for configuring Mailgun. You can leave these commented out
+# if you are not interested in actually sending emails. If left empty,
+# a mock email will be sent to a file in your local '/tmp/' directory.
+# If interested in setting up Mailgun to send emails, you will have
+# to create an account with Mailgun and modify these manually.
+# If running a crates mirror on heroku, you can instead add the Mailgun
+# app to your instance and shouldn't have to mess with these.
+# MAILGUN_SMTP_LOGIN=
+# MAILGUN_SMTP_PASSWORD=
+# MAILGUN_SMTP_SERVER=
+
+# Credentials for connecting to the Sentry error reporting service.
+# SENTRY_DSN_API=
+SENTRY_ENV_API=local
+
+# If you don't require users to complete email verification before
+# they can publish a crate, uncomment this line.
+DISABLE_EMAIL_VERIFICATION_REQUIREMENT=1
