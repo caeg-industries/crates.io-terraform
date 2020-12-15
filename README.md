@@ -73,8 +73,8 @@ correctly and confirmed to work.
 
 ### Finish provisioning
 
-This step secures access to the instance through the use of TLS
-courtesy of [Let’s Encrypt](https://letsencrypt.org)
+This step secures access to the instance through the use of TLS,
+courtesy of [Let’s Encrypt](https://letsencrypt.org).
 
 Shell into the instance using the output of `ssh`, then run the
 following command, completing the prompts as appropriate.
