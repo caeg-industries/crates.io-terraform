@@ -320,7 +320,7 @@ resource "aws_security_group" "_" {
 
 resource "aws_s3_bucket" "crates" {
   bucket = "crates-bucket"
-  acl    = "private"
+  acl    = "public-read"
   force_destroy = true
 
   tags = {
