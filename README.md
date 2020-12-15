@@ -1,6 +1,8 @@
 ## Introduction
 
-This repository contains terraform files that builds an instance of crates.io for experimentation with the https://github.com/caeg-industries/crates.io `subcrates` branch.
+This repository contains terraform files that builds an instance of
+crates.io for experimentation with the
+https://github.com/caeg-industries/crates.io `subcrates` branch.
 
 ## Requirements
 
@@ -23,7 +25,9 @@ OAuth Applications](https://github.com/settings/developers) and click on the
 
 ##### aws.tfvars
 
-Create a `aws.tfvars` file, note that _all_ of the values in the file need to be replaced by you (`my_*`).
+Create a `aws.tfvars` file, note that _all_ of the values in the file
+need to be replaced by you (`my_*`).
+
 ```
 site_fqdn = "crates.my_site.example"
 git_repo_url = "https://github.com/my_organization/crates.io-namespace-fork-index"
@@ -37,7 +41,9 @@ s3_secret_key = "my_s3_secret_key"
 
 ##### Install Terraform
 
-Install `terraform` using the [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started) instructions provided by Hashicorp.
+Install `terraform` using the [Install
+Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started)
+instructions provided by Hashicorp.
 
 ## Build
 
@@ -62,13 +68,16 @@ Once you are able to resolve the DNS host (in `site_fqdn` above), proceed to the
 > Hint: Use `ping`, `dig` or `nslookup` to test
 
 
-**IMPORTANT** Do _NOT_ proceed beyond this poing until DNS is set up correctly and confirmed to work. 
+**IMPORTANT** Do _NOT_ proceed beyond this poing until DNS is set up
+correctly and confirmed to work.
 
 ### Finish provisioning
 
-This step secures access to the instance through the use of TLS courtesy of [Let’s Encrypt](https://letsencrypt.org)
+This step secures access to the instance through the use of TLS
+courtesy of [Let’s Encrypt](https://letsencrypt.org)
 
-Shell into the instance using the output of `ssh`, then run the following command, completing the prompts as appropriate.
+Shell into the instance using the output of `ssh`, then run the
+following command, completing the prompts as appropriate.
 
 ```shell
 sudo sh secure.sh
@@ -82,7 +91,9 @@ Run this command:
 cat ~/.ssh/authorized_keys
 ```
 
-Add the output to the Git Deploy keys of the Git Repository specified above (`git_repo_url`) (ie. `https://github.com/my_organization/crates.io-namespace-fork-index/settings/keys`).
+Add the output to the Git Deploy keys of the Git Repository specified
+above (`git_repo_url`)
+(ie. `https://github.com/my_organization/crates.io-namespace-fork-index/settings/keys`).
 
 Be sure to enable `Allow write access`.
 
