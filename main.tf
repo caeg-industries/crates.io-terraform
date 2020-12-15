@@ -323,6 +323,14 @@ resource "aws_s3_bucket" "crates" {
   acl    = "public-read"
   force_destroy = true
 
+  cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["GET"]
+    allowed_origins = ["https://${var.site_fqdn}"]
+    expose_headers  = ["ETag"]
+    max_age_seconds = 3000
+  }
+
   tags = {
     Group = var.group_tag
   }
