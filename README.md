@@ -18,12 +18,12 @@ OAuth Applications](https://github.com/settings/developers) and click on the
 "Register a new application" button. Fill in the form as follows:
 
 - Application name: name your application whatever you'd like.
-- Homepage URL: `https://<SAME AS site_fqdn BELOW>/` 
+- Homepage URL: `https://<SAME AS site_fqdn BELOW>/`
 - Authorization callback URL: `https://<SAME AS site_fqdn BELOW>/authorize/github`
 
 ##### aws.tfvars
 
-Create a `aws.tfvars` file, note that _all_ of the values in the file need to be replaced by you (`my_*`). 
+Create a `aws.tfvars` file, note that _all_ of the values in the file need to be replaced by you (`my_*`).
 ```
 site_fqdn = "crates.my_site.example"
 git_repo_url = "https://github.com/my_organization/crates.io-namespace-fork-index"
@@ -37,7 +37,7 @@ s3_secret_key = "my_s3_secret_key"
 
 ##### Install Terraform
 
-Please `terraform` using the [install terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started) instructions provided by Hashicorp.
+Install `terraform` using the [Install Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli?in=terraform/aws-get-started) instructions provided by Hashicorp.
 
 ## Build
 
@@ -68,7 +68,7 @@ Once you are able to resolve the DNS host (in `site_fqdn` above), proceed to the
 
 This step secures access to the instance through the use of TLS courtesy of [Let’s Encrypt](https://letsencrypt.org)
 
-Shell into the instance using the output of `ssh`, then run the following command, completing the prompts as appropriate. 
+Shell into the instance using the output of `ssh`, then run the following command, completing the prompts as appropriate.
 
 ```shell
 sudo sh secure.sh
@@ -103,5 +103,5 @@ terraform destroy
 ```
 
 - Delete the `ssh` key in your github repo's Deploy Keys
-  
+
 - Detete the GitHub OAuth credentials you created
