@@ -68,7 +68,7 @@ Once you are able to resolve the DNS host (in `site_fqdn` above), proceed to the
 > Hint: Use `ping`, `dig` or `nslookup` to test
 
 
-**IMPORTANT** Do _NOT_ proceed beyond this poing until DNS is set up
+**IMPORTANT** Do _NOT_ proceed beyond this point until DNS is set up
 correctly and confirmed to work.
 
 ### Finish provisioning
