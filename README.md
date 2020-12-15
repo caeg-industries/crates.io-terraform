@@ -28,7 +28,7 @@ Create a `aws.tfvars` file, note that _all_ of the values in the file need to be
 site_fqdn = "crates.my_site.example"
 git_repo_url = "https://github.com/my_organization/crates.io-namespace-fork-index"
 git_ssh_key = "my_ssh_key"
-git_ssh_repo_url = "git@github.com:my_organization/crates.io-namespace-fork-index.git"
+git_ssh_repo_url = "ssh://git@github.com:22/my_organization/crates.io-namespace-fork-index.git"
 gh_client_secret = "my_gh_client_secret"
 gh_client_id = "my_gh_client_id"
 s3_access_key = "my_s3_access_key"
@@ -81,7 +81,7 @@ cat ~/.ssh/authorized_keys
 
 Add the output to the Git Deploy keys of the Git Repository specified above (`git_repo_url`) (ie. `https://github.com/my_organization/crates.io-namespace-fork-index/settings/keys`).
 
-Be sure to enabled `Allow write access`.
+Be sure to enable `Allow write access`.
 
 
 ### Using this service

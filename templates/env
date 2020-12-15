@@ -5,7 +5,7 @@ DATABASE_URL=postgres://${username}:${password}@${url}/${db}
 
 # Allowed origins - any origins for which you want to allow browser
 # access to authenticated endpoints.
-WEB_ALLOWED_ORIGINS=http://localhost:8888,http://localhost:4200
+WEB_ALLOWED_ORIGINS=http://localhost:8888,http://localhost:4200,https://${site_fqdn}
 
 # If you are running a mirror of crates.io, uncomment this line.
 # MIRROR=1

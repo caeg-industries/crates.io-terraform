@@ -6,6 +6,10 @@ set -eux
 
 sudo apt-get update
 sudo apt-get install -y curl git nodejs gcc pkg-config libssl-dev libpq-dev postgresql-client nginx
+sudo add-apt-repository universe
+sudo add-apt-repository -y ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install -y python-certbot-nginx
 
 # Install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y

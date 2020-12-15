@@ -194,6 +194,10 @@ resource "aws_instance" "bastion_host" {
   key_name                    = aws_key_pair._.key_name
   vpc_security_group_ids      = [aws_security_group.bastion_host_sg.id]
 
+  root_block_device {
+    volume_size = 50
+  }
+
   tags = {
     Group = var.group_tag
   }
@@ -208,6 +212,18 @@ resource "local_file" "ssh_key" {
   content     = tls_private_key._.private_key_pem
   file_permission = "0400"
   filename = var.key_name
+}
+
+resource "null_resource" "create_base64_version_of_key" {
+  depends_on = [local_file.ssh_key]
+  provisioner "local-exec" {
+    command = "cat ${var.key_name} | base64 | tr -d \\n > ${var.key_name}.b64"
+  }
+}
+
+data "local_file" "b64_key" {
+  depends_on = [null_resource.create_base64_version_of_key]
+  filename = "${var.key_name}.b64"
 }
 
 resource "aws_key_pair" "_" {
@@ -305,6 +321,7 @@ resource "aws_security_group" "_" {
 resource "aws_s3_bucket" "crates" {
   bucket = "crates-bucket"
   acl    = "private"
+  force_destroy = true
 
   tags = {
     Group = var.group_tag

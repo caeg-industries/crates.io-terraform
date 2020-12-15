@@ -6,4 +6,5 @@ pushd crates.io
 git checkout subcrates
 diesel migration run
 yarn install
+yarn build
 cargo build

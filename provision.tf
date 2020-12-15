@@ -61,10 +61,10 @@ resource "null_resource" "server_configure_a" {
 }
 
 resource "null_resource" "server_configure_b" {
-  depends_on = [null_resource.server_configure_a]
+  depends_on = [null_resource.server_configure_a,data.local_file.b64_key]
 
   provisioner "file" {
-    content = templatefile("scripts/secure.sh", {
+    content = templatefile("templates/secure.sh", {
       site_fqdn = var.site_fqdn
     })
     destination = "secure.sh"
@@ -124,7 +124,7 @@ resource "null_resource" "server_configure_b" {
       gh_id = var.gh_client_id
       gh_secret = var.gh_client_secret
       git_ssh_repo_url = var.git_ssh_repo_url
-      git_ssh_key = tls_private_key.ssh_git_keys.private_key_pem
+      git_ssh_key = data.local_file.b64_key.content
       git_repo_url = var.git_repo_url
     })
     destination = "/home/ubuntu/.config/crates/env"

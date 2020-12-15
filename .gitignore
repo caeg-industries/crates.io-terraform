@@ -6,3 +6,4 @@ ssh_key
 .terraform*
 terraform.tfstate.backup
 terraform.tfstate
+/ssh_key.b64
