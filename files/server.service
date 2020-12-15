@@ -6,7 +6,7 @@ After=network.target
 EnvironmentFile=/home/ubuntu/.config/crates/env
 Type=simple
 WorkingDirectory=/home/ubuntu/crates.io
-ExecStart=/home/ubuntu/.cargo/bin/cargo run --bin server
+ExecStart=/home/ubuntu/.cargo/bin/cargo run --bin server --release
 Restart=always
 RestartSec=3
 
