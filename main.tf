@@ -318,20 +318,50 @@ resource "aws_security_group" "_" {
   }
 }
 
+data "aws_canonical_user_id" "current_user" {}
+
 resource "aws_s3_bucket" "crates" {
   bucket = "crates-bucket"
-  acl    = "public-read"
-  force_destroy = true
+
+  grant {
+    id          = data.aws_canonical_user_id.current_user.id
+    type        = "CanonicalUser"
+    permissions = ["FULL_CONTROL"]
+  }
+
+  grant {
+    type        = "Group"
+    permissions = ["READ"]
+    uri         = "http://acs.amazonaws.com/groups/global/AllUsers"
+  }
 
   cors_rule {
-    allowed_headers = ["*"]
     allowed_methods = ["GET"]
     allowed_origins = ["https://${var.site_fqdn}"]
-    expose_headers  = ["ETag"]
-    max_age_seconds = 3000
   }
 
   tags = {
     Group = var.group_tag
   }
+}
+
+resource "aws_s3_bucket_policy" "crates" {
+  bucket = aws_s3_bucket.crates.id
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "*"
+      },
+      "Action": "s3:GetObject",
+      "Resource": "${aws_s3_bucket.crates.arn}/*"
+    }
+  ]
+}
+EOF
 }
