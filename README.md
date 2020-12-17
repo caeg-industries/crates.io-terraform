@@ -8,11 +8,11 @@ https://github.com/caeg-industries/crates.io `subcrates` branch.
 
 #### Amazon CLI
 
-Install the `aws-cli` package for your platform.
+Install the `aws` cli package for your platform.
 
 On MacOS:
 ```shell
-brew install aws-cli
+brew install awscli
 ```
 
 #### Amazon Root Account
@@ -21,7 +21,7 @@ Currently these files are tested with a Amazon Root User. Create an access key b
 
 Account -> Security Credentials -> Access keys
 
-Then run the following to configure the `aws-cli` to use the credentials provided:
+Then run the following to configure the `aws` cli to use the credentials provided:
 
 ```shell
 aws configure
