@@ -6,6 +6,31 @@ https://github.com/caeg-industries/crates.io `subcrates` branch.
 
 ## Requirements
 
+#### Amazon CLI
+
+Install the `aws-cli` package for your platform.
+
+On MacOS:
+```shell
+brew install aws-cli
+```
+
+#### Amazon Root Account
+
+Currently these files are tested with a Amazon Root User. Create an access key by navigating to:
+
+Account -> Security Credentials -> Access keys
+
+Then run the following to configure the `aws-cli` to use the credentials provided:
+
+```shell
+aws configure
+```
+
+#### Variables
+
+You can update any of the values in the `variables.tf` before you run `terraform` in order to customize items such as the AWS region to use.
+
 ##### GitHub OAuth
 
 > Derived from https://github.com/rust-lang/crates.io/blob/master/docs/CONTRIBUTING.md
@@ -31,7 +56,6 @@ need to be replaced by you (`my_*`).
 ```
 site_fqdn = "crates.my_site.example"
 git_repo_url = "https://github.com/my_organization/crates.io-namespace-fork-index"
-git_ssh_key = "my_ssh_key"
 git_ssh_repo_url = "ssh://git@github.com:22/my_organization/crates.io-namespace-fork-index.git"
 gh_client_secret = "my_gh_client_secret"
 gh_client_id = "my_gh_client_id"
