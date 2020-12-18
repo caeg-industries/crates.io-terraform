@@ -321,7 +321,7 @@ resource "aws_security_group" "_" {
 data "aws_canonical_user_id" "current_user" {}
 
 resource "aws_s3_bucket" "crates" {
-  bucket = "crates-bucket"
+  bucket = var.bucketname
 
   grant {
     id          = data.aws_canonical_user_id.current_user.id
