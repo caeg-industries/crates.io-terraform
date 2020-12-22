@@ -42,26 +42,8 @@ resource "tls_private_key" "ssh_git_keys" {
   rsa_bits  = 4096
 }
 
-resource "null_resource" "server_configure_a" {
-  depends_on = [
-    null_resource.server_bootstrap]
-
-  provisioner "remote-exec" {
-    inline = [
-      "mkdir -p .config/systemd/user",
-      "mkdir -p .config/crates",
-    ]
-    connection {
-      type = "ssh"
-      user = "ubuntu"
-      private_key = tls_private_key._.private_key_pem
-      host = data.aws_instance.crates_server.public_ip
-    }
-  }
-}
-
 resource "null_resource" "server_configure_b" {
-  depends_on = [null_resource.server_configure_a,data.local_file.b64_key]
+  depends_on = [data.local_file.b64_key,null_resource.server_bootstrap]
 
   provisioner "file" {
     content = templatefile("templates/secure.sh", {

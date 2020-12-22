@@ -33,15 +33,12 @@ cargo install diesel_cli --no-default-features --features postgres
 
 # Get crates.io
 test -d crates.io || git clone https://github.com/caeg-industries/crates.io
-#sed 's|DATABASE_URL=|DATABASE_URL=postgres://crates:YourPwdShouldBeLongAndSecure!@crates-postgres.c1piscwtiuok.us-west-1.rds.amazonaws.com:5432/cargo_registry|g' env.sample > crates.io/.env
-#pushd crates.io
-#diesel migration run
-#git checkout subcrates
-#yarn install
-#cargo build
 sudo echo "KillUserProcesses=no" | sudo tee -a /etc/systemd/logind.conf
 sudo systemctl restart systemd-logind
 sudo loginctl enable-linger ubuntu
 
+# Create needed directories
+mkdir -p .config/systemd/user
+mkdir -p .config/crates
 
 echo "Finished"
